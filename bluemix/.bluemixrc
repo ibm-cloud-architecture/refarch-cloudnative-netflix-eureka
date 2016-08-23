@@ -5,22 +5,17 @@
 #################################################################################
 # Image names
 #################################################################################
-
-REGISTRY_IMAGE=eureka:latest
+REGISTRY_IMAGE=microservices-refapp-eureka:latest
 
 #################################################################################
 # Image registries
 #################################################################################
-
 BLUEMIX_REGISTRY_HOST=$(cf ic info | grep Registry | awk '{print $4}')
 BLUEMIX_REGISTRY_NAMESPACE=$(cf ic namespace get)
 
 #################################################################################
 # Routes
 #################################################################################
-
 ROUTES_DOMAIN=mybluemix.net
-
-REGISTRY_HOSTNAME=demo-eureka-${RANDOM}
-
+REGISTRY_HOSTNAME=microservices-refapp-eureka-${RANDOM}
 REGISTRY_URL=http://${REGISTRY_HOSTNAME}.${ROUTES_DOMAIN}
