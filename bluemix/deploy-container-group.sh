@@ -36,9 +36,12 @@ echo "Starting Eureka container group"
 cf ic group create --name eureka_cluster \
   --publish 8761 --memory 256 --auto \
   --min 1 --max 3 --desired 2 \
-  --hostname $REGISTRY_HOSTNAME \
-  --domain $ROUTES_DOMAIN \
-  --env eureka.client.serviceUrl.defaultZone=${REGISTRY_URL} \
-  --env eureka.client.registerWithEureka=true \
+  --hostname ${REGISTRY_HOSTNAME} \
+  --domain ${ROUTES_DOMAIN} \
   --env eureka.client.fetchRegistry=true \
+  --env eureka.client.registerWithEureka=true \
+  --env eureka.client.serviceUrl.defaultZone=${REGISTRY_URL}/eureka/ \
+  --env eureka.instance.hostname=${REGISTRY_HOSTNAME}.${ROUTES_DOMAIN} \
+  --env eureka.instance.nonSecurePort=80 \
+  --env eureka.port=80 \
   ${BLUEMIX_REGISTRY_HOST}/${BLUEMIX_REGISTRY_NAMESPACE}/${REGISTRY_IMAGE}
