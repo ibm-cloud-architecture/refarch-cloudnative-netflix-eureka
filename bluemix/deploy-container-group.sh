@@ -35,7 +35,7 @@ done
 echo "Starting Eureka container group"
 cf ic group create --name eureka_cluster \
   --publish 8761 --memory 256 --auto \
-  --min 1 --max 3 --desired 2 \
+  --min 1 --max 3 --desired 1 \
   --hostname ${REGISTRY_HOSTNAME} \
   --domain ${ROUTES_DOMAIN} \
   --env eureka.client.fetchRegistry=true \
