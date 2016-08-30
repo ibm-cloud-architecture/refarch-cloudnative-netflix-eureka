@@ -10,7 +10,11 @@ REGISTRY_IMAGE=microservices-refapp-eureka:latest
 #################################################################################
 # Image registries
 #################################################################################
-BLUEMIX_REGISTRY_HOST=$(cf ic info | grep Registry | awk '{print $4}')
+# BLUEMIX_REGISTRY_HOST - This info is accessible through `cf ic info`
+# US South Region: registry.ng.bluemix.net
+# UK London Region: registry.eu-gb.bluemix.net
+BLUEMIX_REGISTRY_HOST=registry.ng.bluemix.net
+
 BLUEMIX_REGISTRY_NAMESPACE=$(cf ic namespace get)
 
 #################################################################################
