@@ -2,7 +2,7 @@
 
 mvn clean package
 
-cp target/eureka-*.jar docker/app.jar
+cp target/eureka-0.0.1-SNAPSHOT.jar docker/app.jar
 
 cd docker/
 
