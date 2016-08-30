@@ -33,7 +33,18 @@ TBD
     Note that the URL suffix of `/eureka/` is a required addition.
 
 #### Run it on Bluemix
-TBD
+1.  Edit the Bluemix Response File to select your desired external public route, application domain, and other operational details.  The default values in the `.bluemixrc` are acceptable to deploy in to the US-South Bluemix region.
+
+2.  To deploy Eureka as a container group onto the Bluemix Container Service, execute the following script:
+        ./deploy-container-group.sh
+    This script will create a clustered group of homogeneous containers, with additional management capabilities provided by Bluemix.
+
+3.  The script will complete rather quickly, but the creation of the necessary Container Group and clustered containers may take a few moments. To check on the status of your Eureka Container Group, you can run the following command:
+        cf ic group ls | grep eureka_cluster
+    Once you see a value for *Status* of `CREATE_COMPLETED`, your Eureka instance will now be publicly accessible through the URL configured in the Bluemix response file.  
+
+    Your Eureka clients will be able to access Eureka via that URL and the required `/eureka/` suffix.  For example,  
+        http://microservices-refapp-eureka-cloudarch.mybluemix.net/eureka/
 
 #### Validate Deployment
 TBD
