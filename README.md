@@ -43,6 +43,7 @@ The REST APIs provided by Eureka are documented on the [Eureka GitHub page](http
 #### Pre-requisites:
 - Install Java JDK 1.8 and ensure it is available in your PATH
 - _(Optional)_ A local Docker instance (either native or docker-machine based) running on localhost to host container(s). [Click for instructions](https://docs.docker.com/machine/get-started/).
+- _(Optional)_ Apache Maven is used for an alternate build system.  [Click for instructions](https://maven.apache.org/install.html).
 
 #### Build the Application Component
 1.  Run one of the provided build scripts to compile the Java code, package it into a runnable JAR, and build the Docker image.  Run either  
@@ -74,7 +75,7 @@ The REST APIs provided by Eureka are documented on the [Eureka GitHub page](http
 
 3.  The script will complete rather quickly, but the creation of the necessary Container Group and clustered containers may take a few moments. To check on the status of your Eureka Container Group, you can run the following command:  
         `cf ic group ls | grep eureka_cluster`  
-    
+
     Once you see a value for *Status* of `CREATE_COMPLETED`, your Eureka instance will now be publicly accessible through the URL configured in the Bluemix response file.  
 
 4.  Your Eureka client applications can now connect to the running Eureka server via configuration of the following Spring Boot property:  
