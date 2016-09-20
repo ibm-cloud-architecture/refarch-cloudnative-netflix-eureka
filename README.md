@@ -1,17 +1,45 @@
-# IBM Cloud Architecture - Microservices Reference Application
+# IBM Cloud Architecture - Microservices Reference Application for Netflix OSS
 
-## Netflix OSS on Bluemix - Eureka Service Discovery
+### Netflix Microservices Framework on Bluemix - Eureka Service Discovery
 
-### Description
-TBD
+#### Description
+  This project contains a packaged [Eureka](https://github.com/Netflix/eureka) Service Discovery server for use in a [Netflix OSS](http://netflix.github.io/)-based microservices architecture.  This enables individual microservices to dynamically register themselves and lookup required peer microservices for request routing.  The repository builds the Eureka component into a runnable JAR that can either be used directly in Cloud Foundry or built into a Docker image (with the [Dockerfile](https://github.com/ibm-cloud-architecture/microservices-netflix-eureka/blob/master/docker/Dockerfile) provided).
 
-### Root Reference Application
-https://github.com/ibm-cloud-architecture/microservices-netflix
+  This repository, and its parent reference application, are built to enable deployment and learning of building and operating microservices-based applications on the IBM Cloud, but due to the OSS-based nature of the components involved, this reference application can be deployed to any cloud or on-premises environment as desired.
 
-### Application Architecture
-TBD
+#### Parent Reference Application
+  **This project is part of the [IBM Cloud Architecture - Microservices Reference Application for Netflix OSS](https://github.com/ibm-cloud-architecture/microservices-netflix*) suite.**
 
-### Run this Application Component
+  For full reference application overviews and deployment guidance, please refer to the root repository above.  The overall project consists of multiple sub projects:
+
+  - Standard Netflix OSS-based microservice architecture components, like Eureka and Zuul
+  - Sample Spring Boot applications which provide a REST API and communication between each other.
+  - Deployment pipeline and automation guidance
+
+  The **Microservices Reference Application for Netflix OSS** is maintained by the IBM Cloud Lab Services and [Cloud Solution Engineering](https://github.com/ibm-cloud-architecture) teams.
+
+#### Application Architecture
+1.  **IBM Cloud Architecture - Microservices Reference Application for Netflix OSS**
+    The Microservices Reference Application for Netflix OSS leverages Eureka as its service discovery mechanism.  You can see where Eureka is used, highlighted in the diagram below.
+        TBD
+2.  **IBM Cloud Architecture - Cloud Native Microservices Reference Application for OmniChannel**
+    The Eureka component is also leveraged in the OmniChannel Application as its service discovery mechanism.  You can see where Eureka is used, highlighted in the diagram below.
+        TBD
+
+#### APIs in this application:
+The REST APIs provided by Eureka are documented on the [Eureka GitHub page](https://github.com/Netflix/eureka/wiki/Eureka-REST-operations), but there are a few simple REST APIs that can be accessed via cURL or Chrome POSTMAN to send get/post/put/delete requests to the application.
+- Query for all instances:
+http://<hostname>/eureka/v2/apps
+- Query for all *appID* instances:
+http://<hostname>/eureka/v2/apps/*appID*
+- Query for a specific *instanceID*:
+http://<hostname>/eureka/v2/instances/*instanceID*
+- Query for a specific *appID/instanceID*:
+http://<hostname>/eureka/v2/apps/*appID*/*instanceID*
+
+#### Pre-requisites:
+- Install Java JDK 1.8 and ensure it is available in your PATH
+- (Optional) A local Docker instance (either native or docker-machine based) running on localhost to host container(s). [Click for instructions](https://docs.docker.com/machine/get-started/).
 
 #### Build the Application Component
 1.  Run one of the provided build scripts to compile the Java code, package it into a runnable JAR, and build the Docker image.  Run either  
@@ -20,31 +48,34 @@ TBD
         ./build-gradle.sh  
   to run the Maven or Gradle builds, respectively.  Both build packages produce the same output, however both build files are provided for convenience of the user.
 
-#### Run it Locally
+#### Run the Application Component Locally
 1.  You can now run either the JAR file or the Docker image locally.  
 
     1.1.  To run the JAR file locally, you can simply pass parameters to the Java command in the command prompt:  
         java -jar docker/app.jar  
-    1.2.  To run the Docker file locally, you can pass the same paramters to start the local Docker image:  
+    1.2.  To run the Docker file locally, you can pass the same parameters to start the local Docker image:  
         docker run -p 8761:8761 microservices-refapp-eureka:latest  
 
-2.  Your Eureka client applications can now connect to the running Eureka server via the following URL:
-        http://localhost:8761/eureka/
-    Note that the URL suffix of `/eureka/` is a required addition.
+2.  Your Eureka client applications can now connect to the running Eureka server via configuration of the following Spring Boot property:
+  `eureka.client.serviceUrl.defaultZone=http://localhost:8761/eureka/`
 
-#### Run it on Bluemix
-1.  Edit the Bluemix Response File to select your desired external public route, application domain, and other operational details.  The default values in the `.bluemixrc` are acceptable to deploy in to the US-South Bluemix region.
+3.  The Eureka user interface is available via `http://localhost:8761`.
 
-2.  To deploy Eureka as a container group onto the Bluemix Container Service, execute the following script:
+#### Run the Application Component on Bluemix
+1.  Edit the Bluemix Response File to select your desired external public route, application domain, and other operational details.  The default values in the `.bluemixrc` are acceptable to deploy to the US-South Bluemix region.
+
+2.  To deploy Eureka as a container group onto the Bluemix Container Service, execute the following script:  
         ./deploy-container-group.sh
     This script will create a clustered group of homogeneous containers, with additional management capabilities provided by Bluemix.
 
-3.  The script will complete rather quickly, but the creation of the necessary Container Group and clustered containers may take a few moments. To check on the status of your Eureka Container Group, you can run the following command:
-        cf ic group ls | grep eureka_cluster
+3.  The script will complete rather quickly, but the creation of the necessary Container Group and clustered containers may take a few moments. To check on the status of your Eureka Container Group, you can run the following command:  
+        cf ic group ls | grep eureka_cluster  
     Once you see a value for *Status* of `CREATE_COMPLETED`, your Eureka instance will now be publicly accessible through the URL configured in the Bluemix response file.  
 
-    Your Eureka clients will be able to access Eureka via that URL and the required `/eureka/` suffix.  For example,  
-        http://microservices-refapp-eureka-cloudarch.mybluemix.net/eureka/
+4.  Your Eureka client applications can now connect to the running Eureka server via configuration of the following Spring Boot property:
+      `eureka.client.serviceUrl.defaultZone=http://microservices-refapp-eureka-[YOUR_NAMESPACE].mybluemix.net/eureka/`
 
-#### Validate Deployment
-TBD
+5.  The Eureka user interface is available via `http://microservices-refapp-eureka-[YOUR_NAMESPACE].mybluemix.net`.
+
+#### Validate the Application Component Deployment
+1.  Validate that the user interface appears after a few seconds of the application being started.
