@@ -21,10 +21,11 @@ The **Microservices Reference Application for Netflix OSS** is maintained by the
 #### Application Architecture
 1.  **IBM Cloud Architecture - Microservices Reference Application for Netflix OSS**  
     The Microservices Reference Application for Netflix OSS leverages Eureka as its service discovery mechanism.  You can see where Eureka is used, highlighted in the diagram below.  
-        **TBD**
+    ![Microservices RefApp Architecture](static/imgs/netflix-oss-wfd-arch-eureka.png?raw=true)
 2.  **IBM Cloud Architecture - Cloud Native Microservices Reference Application for OmniChannel**  
     The Eureka component is also leveraged in the [OmniChannel Application](https://github.com/ibm-cloud-architecture/refarch-cloudnative) as its service discovery mechanism.  You can see where Eureka is used, highlighted in the diagram below.  
-        **TBD**
+    ![OmniChannel Application Architecture](static/imgs/omnichannel-arch-eureka.png?raw=true)
+
 
 #### APIs in this application:
 The REST APIs provided by Eureka are documented on the [Eureka GitHub page](https://github.com/Netflix/eureka/wiki/Eureka-REST-operations), but there are a few simple REST APIs that can be accessed via cURL or Chrome POSTMAN to send get/post/put/delete requests to the application.
