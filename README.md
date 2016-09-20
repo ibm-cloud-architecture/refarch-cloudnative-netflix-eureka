@@ -19,11 +19,11 @@
 The **Microservices Reference Application for Netflix OSS** is maintained by the IBM Cloud Lab Services and [Cloud Solution Engineering](https://github.com/ibm-cloud-architecture) teams.
 
 #### Application Architecture
-1.  **IBM Cloud Architecture - Microservices Reference Application for Netflix OSS**
+1.  **IBM Cloud Architecture - Microservices Reference Application for Netflix OSS**  
     The Microservices Reference Application for Netflix OSS leverages Eureka as its service discovery mechanism.  You can see where Eureka is used, highlighted in the diagram below.  
         **TBD**
-2.  **IBM Cloud Architecture - Cloud Native Microservices Reference Application for OmniChannel**
-    The Eureka component is also leveraged in the OmniChannel Application as its service discovery mechanism.  You can see where Eureka is used, highlighted in the diagram below.  
+2.  **IBM Cloud Architecture - Cloud Native Microservices Reference Application for OmniChannel**  
+    The Eureka component is also leveraged in the [OmniChannel Application](https://github.com/ibm-cloud-architecture/refarch-cloudnative) as its service discovery mechanism.  You can see where Eureka is used, highlighted in the diagram below.  
         **TBD**
 
 #### APIs in this application:
@@ -69,10 +69,12 @@ The REST APIs provided by Eureka are documented on the [Eureka GitHub page](http
 
 2.  To deploy Eureka as a container group onto the Bluemix Container Service, execute the following script:  
         `./deploy-container-group.sh`  
+
     This script will create a clustered group of homogeneous containers, with additional management capabilities provided by Bluemix.
 
 3.  The script will complete rather quickly, but the creation of the necessary Container Group and clustered containers may take a few moments. To check on the status of your Eureka Container Group, you can run the following command:  
         `cf ic group ls | grep eureka_cluster`  
+    
     Once you see a value for *Status* of `CREATE_COMPLETED`, your Eureka instance will now be publicly accessible through the URL configured in the Bluemix response file.  
 
 4.  Your Eureka client applications can now connect to the running Eureka server via configuration of the following Spring Boot property:  
