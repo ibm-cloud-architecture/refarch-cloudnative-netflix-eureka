@@ -1,6 +1,6 @@
 #!/bin/bash
 
-IMAGE_NAME=microservices-refapp-eureka
+IMAGE_NAME=microservices-netflix-eureka
 MAVEN_BUILD_TARGET=target/eureka-0.0.1-SNAPSHOT.jar
 GRADLE_BUILD_TARGET=build/libs/eureka-0.0.1-SNAPSHOT.jar
 
