@@ -3,12 +3,12 @@
 ### Netflix Microservices Framework on Bluemix - Eureka Service Discovery
 
 #### Description
-  This project contains a packaged [Eureka](https://github.com/Netflix/eureka) Service Discovery server for use in a [Netflix OSS](http://netflix.github.io/)-based microservices architecture.  This enables individual microservices to dynamically register themselves and lookup required peer microservices for request routing.  The repository builds the Eureka component into a runnable JAR that can either be used directly in Cloud Foundry or built into a Docker image (with the [Dockerfile](https://github.com/ibm-cloud-architecture/microservices-netflix-eureka/blob/master/docker/Dockerfile) provided).
+  This project contains a packaged [Eureka](https://github.com/Netflix/eureka) Service Discovery server for use in a [Netflix OSS](http://netflix.github.io/)-based microservices architecture.  This enables individual microservices to dynamically register themselves and lookup required peer microservices for request routing.  The repository builds the Eureka component into a runnable JAR that can either be used directly in Cloud Foundry or built into a Docker image (with the [Dockerfile](https://github.com/ibm-cloud-architecture/refarch-cloudnative-netflix-eureka/blob/master/docker/Dockerfile) provided).
 
   This repository, and its parent reference application, are built to enable deployment and learning of building and operating microservices-based applications on the IBM Cloud, but due to the OSS-based nature of the components involved, this reference application can be deployed to any cloud or on-premises environment as desired.
 
 #### Parent Reference Application
-  **This project is part of the [IBM Cloud Architecture - Microservices Reference Application for Netflix OSS](https://github.com/ibm-cloud-architecture/microservices-netflix*) suite.**
+  **This project is part of the [IBM Cloud Architecture - Microservices Reference Application for Netflix OSS](https://github.com/ibm-cloud-architecture/refarch-cloudnative-netflix*) suite.**
 
   For full reference application overviews and deployment guidance, please refer to the root repository above.  The overall project consists of multiple sub projects:
 
@@ -59,7 +59,7 @@ The REST APIs provided by Eureka are documented on the [Eureka GitHub page](http
     1.1.  To run the JAR file locally, you can simply pass parameters to the Java command in the command prompt:  
         `java -jar docker/app.jar`  
     1.2.  To run the Docker file locally, you can pass the same parameters to start the local Docker image:  
-        `docker run -p 8761:8761 microservices-refapp-eureka:latest`  
+        `docker run -p 8761:8761 netflix-eureka:latest`  
 
 2.  Your Eureka client applications can now connect to the running Eureka server via configuration of the following Spring Boot property:  
         `eureka.client.serviceUrl.defaultZone=http://localhost:8761/eureka/`
@@ -80,9 +80,9 @@ The REST APIs provided by Eureka are documented on the [Eureka GitHub page](http
     Once you see a value for *Status* of `CREATE_COMPLETED`, your Eureka instance will now be publicly accessible through the URL configured in the Bluemix response file.  
 
 4.  Your Eureka client applications can now connect to the running Eureka server via configuration of the following Spring Boot property:  
-      `eureka.client.serviceUrl.defaultZone=http://microservices-refapp-eureka-[YOUR_NAMESPACE].mybluemix.net/eureka/`
+      `eureka.client.serviceUrl.defaultZone=http://netflix-eureka-[YOUR_NAMESPACE].mybluemix.net/eureka/`
 
-5.  The Eureka user interface is available via `http://microservices-refapp-eureka-[YOUR_NAMESPACE].mybluemix.net`.
+5.  The Eureka user interface is available via `http://netflix-eureka-[YOUR_NAMESPACE].mybluemix.net`.
 
 #### Validate the Application Component Deployment
 1.  Validate that the user interface appears after a few seconds of the application being started.
