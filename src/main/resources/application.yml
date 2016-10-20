@@ -1,5 +1,5 @@
 server:
-  port: ${vcap.application.port:8761}
+  port: ${PORT:8761}
 
 eureka:
   instance:
@@ -11,4 +11,5 @@ eureka:
     serviceUrl:
       defaultZone: http://${eureka.instance.hostname}:${server.port}/eureka/
   server:
+    renewalPercentThreshold: 0.32
     waitTimeInMsWhenSyncEmpty: 0
