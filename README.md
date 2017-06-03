@@ -86,9 +86,9 @@ The REST APIs provided by Eureka are documented on the [Eureka GitHub page](http
     Once you see a value for *Status* of `CREATE_COMPLETED`, your Eureka instance will now be publicly accessible through the URL configured in the Bluemix response file.  
 
 4.  Your Eureka client applications can now connect to the running Eureka server via configuration of the following Spring Boot property:  
-      `eureka.client.serviceUrl.defaultZone=http://netflix-eureka-[YOUR_NAMESPACE].mybluemix.net/eureka/`
+      `eureka.client.serviceUrl.defaultZone=http://netflix-eureka-[YOUR_NAMESPACE].mybluemix.net:8761/eureka/`
 
-5.  The Eureka user interface is available via `http://netflix-eureka-[YOUR_NAMESPACE].mybluemix.net`.
+5.  The Eureka user interface is available via `http://netflix-eureka-[YOUR_NAMESPACE].mybluemix.net:8761`.
 
 #### Validate the Application Component Deployment
 1.  Validate that the user interface appears after a few seconds of the application being started.
