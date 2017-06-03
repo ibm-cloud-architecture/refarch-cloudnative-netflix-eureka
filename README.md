@@ -73,7 +73,7 @@ The REST APIs provided by Eureka are documented on the [Eureka GitHub page](http
 3.  The Eureka user interface is available via `http://localhost:8761`.
 
 #### Run the Application Component on Bluemix
-1.  Edit the Bluemix Response File to select your desired external public route, application domain, and other operational details.  The default values in the `.bluemixrc` are acceptable to deploy to the US-South Bluemix region.
+1.  Edit the Bluemix Response File to select your desired external public route, application domain, and other operational details.  The default values in the file `bluemix/.bluemixrc` are acceptable to deploy to the US-South Bluemix region.
 
 2.  To deploy Eureka as a container group onto the Bluemix Container Service, execute the following script:  
         `./deploy-container-group.sh`  
