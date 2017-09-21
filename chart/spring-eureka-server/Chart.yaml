@@ -1,0 +1,4 @@
+apiVersion: v1
+description: Spring Eureka Server
+name: spring-eureka-server
+version: 1.0.0
