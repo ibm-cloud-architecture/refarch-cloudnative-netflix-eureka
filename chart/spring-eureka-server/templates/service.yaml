@@ -4,10 +4,13 @@ metadata:
   {{ if .Values.service.name }}
   name: {{ .Values.service.name }}
   {{ else }}
-  name: {{ .Release.Name }}-{{ .Chart.Name }}-eureka-server
+  name: {{ .Release.Name }}-{{ .Chart.Name }}
   {{ end }}
   labels:
     chart: {{ .Chart.Name }}-{{ .Chart.Version | replace "+" "_" }}
+    release: {{ .Release.Name }}
+    heritage: {{ .Release.Service }}
+    component: eureka-server
 spec:
   type: {{ .Values.service.type }}
   ports:

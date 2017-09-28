@@ -3,8 +3,11 @@
 apiVersion: v1
 kind: ConfigMap
 metadata:
-  name: {{ .Release.Name }}-{{ .Chart.Name }}-eureka-server
+  name: {{ .Release.Name }}-{{ .Chart.Name }}
   labels:
+    chart: {{ .Chart.Name }}-{{ .Chart.Version | replace "+" "_" }}
+    release: {{ .Release.Name }}
+    heritage: {{ .Release.Service }}
     component: eureka-server
 data:
   bootstrap.yaml: |+
@@ -23,11 +26,7 @@ data:
 {{ end }}
   application.yaml: |+
     eureka:
-      instance:
-        hostname: {{ .Values.service.name }}
       client:
-        registerWithEureka: false
-        fetchRegistry: false
         serviceUrl:
-          defaultZone: http://${eureka.instance.hostname}:${server.port}/eureka/
+          defaultZone: {{ template "eurekaUrl" . }}
 {{ end }}

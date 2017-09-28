@@ -9,7 +9,7 @@ image:
   pullPolicy: Always
 
 service:
-  name: eureka-server
+  name:
   type: ClusterIP
   port: 8761
   internalPort: 8761
