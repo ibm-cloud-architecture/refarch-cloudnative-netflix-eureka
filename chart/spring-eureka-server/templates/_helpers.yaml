@@ -1,7 +1,0 @@
-{{- define "eurekaUrl" -}}
-{{- if .Values.service.name -}}
-http://{{ .Values.service.name }}:{{ .Values.service.port }}/eureka/
-{{- else -}}
-http://{{ .Release.Name }}-{{ .Chart.Name }}:{{ .Values.service.port }}/eureka/
-{{- end -}}
-{{- end -}}
