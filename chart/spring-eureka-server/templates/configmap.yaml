@@ -1,4 +1,5 @@
-{{ if .Values.config.existingConfigMapName }}
+{{ if .Values.global.useConfigServerBootstrap }}
+{{ else if .Values.config.existingConfigMapName }}
 {{ else }}
 apiVersion: v1
 kind: ConfigMap
@@ -24,9 +25,14 @@ data:
 {{ else }}
           enabled: false
 {{ end }}
+
   application.yaml: |+
     eureka:
+      instance:
+        hostname: localhost
       client:
+        registerWithEureka: false
+        fetchRegistry: false
         serviceUrl:
-          defaultZone: {{ template "eurekaUrl" . }}
+          defaultZone: http://${eureka.instance.hostname}:${server.port}/eureka/
 {{ end }}

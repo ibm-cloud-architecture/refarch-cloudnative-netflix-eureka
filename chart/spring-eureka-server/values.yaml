@@ -22,3 +22,6 @@ spring:
     config:
       enabled: false
       uri:
+
+global:
+  useConfigServerBootstrap: false

@@ -29,9 +29,4 @@ spec:
           name: eureka-server-config
       volumes:
       - name: eureka-server-config
-        configMap:
-{{ if .Values.config.existingConfigMapName }}
-          name: {{ .Values.config.existingConfigMapName }}
-{{ else }}
-          name: {{ .Release.Name }}-{{ .Chart.Name }}
-{{ end }}
+{{ include "configServerBootstrap" . }}
