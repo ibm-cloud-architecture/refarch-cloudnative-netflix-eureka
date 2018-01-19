@@ -1,8 +1,8 @@
-#!/bin/bash
+!/bin/bash
 
 IMAGE_NAME=netflix-eureka
 MAVEN_BUILD_TARGET=target/eureka-0.0.1-SNAPSHOT.jar
-GRADLE_BUILD_TARGET=build/libs/eureka-0.0.1-SNAPSHOT.jar
+GRADLE_BUILD_TARGET=build/libs/spring-eureka-server-0.0.1-SNAPSHOT.jar	
 
 while getopts "md" ARG; do
   case ${ARG} in
